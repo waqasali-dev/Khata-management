@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "name": "Ali",
+    "identity": "Kumhar",
+    "amount": 100,
+    "udhars": [
+      {
+        "id": 1,
+        "amount": 50,
+        "type": "udhar",
+        "date": "2022-01-01"
+      },
+      {
+        "id": 2,
+        "amount": 50,
+        "type": "udhar",
+        "date": "2022-01-01"
+      }
+    ]
+  },
+  {
+    "name": "Waqas Jutt",
+    "identity": "chabal",
+    "udhars": [
+      {
+        "amount": 300,
+        "type": "udhar",
+        "date": "2026-07-25"
+      }
+    ],
+    "amount": 300,
+    "id": 2
+  }
+]
