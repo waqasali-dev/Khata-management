@@ -1,0 +1,523 @@
+/* ===== NEW CONTACT PAGE STYLES ===== */
+/* Uses the same root variables from App.css */
+
+/* ===== PAGE CONTAINER ===== */
+.new-contact-page {
+    min-height: 100vh;
+    background-color: var(--background);
+    padding-bottom: 80px;
+}
+
+/* ===== MAIN CONTENT GRID ===== */
+.new-contact-main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-md);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+}
+
+@media (min-width: 1024px) {
+    .new-contact-main {
+        grid-template-columns: 5fr 7fr;
+        padding: var(--spacing-xl) var(--spacing-lg);
+    }
+}
+
+/* ===== LEFT COLUMN ===== */
+.form-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* ===== FORM CARD ===== */
+.form-card {
+    background-color: var(--surface-container-lowest);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--outline-variant);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+/* Form Card Header */
+.form-card-header {
+    padding: var(--spacing-lg);
+    background-color: var(--surface-container-low);
+    border-bottom: 1px solid var(--outline-variant);
+}
+
+.form-card-header h1 {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 600;
+    color: var(--primary);
+    margin: 0;
+}
+
+.form-card-header p {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color: var(--on-surface-variant);
+    margin-top: var(--spacing-xs);
+}
+
+/* ===== FORM ELEMENT ===== */
+.new-contact-form {
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+/* ===== FORM FIELD GROUP ===== */
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+/* ===== LABELS ===== */
+.form-field label {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    color: var(--on-surface-variant);
+    display: block;
+    transition: color 0.2s ease;
+}
+
+.form-field label .required-star {
+    color: var(--error);
+}
+
+.form-field:focus-within label {
+    color: var(--secondary);
+}
+
+/* ===== INPUT FIELDS ===== */
+.form-field input {
+    width: 100%;
+    height: 44px;
+    padding: 0 var(--spacing-md);
+    border-radius: var(--radius-sm);
+    background-color: var(--surface);
+    border: 1px solid var(--outline-variant);
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color: var(--on-surface);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-field input::placeholder {
+    color: var(--outline);
+}
+
+.form-field input:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 1px var(--secondary);
+}
+
+/* ===== UDHAR AMOUNT FIELD (with ₹ prefix) ===== */
+.amount-input-wrapper {
+    position: relative;
+}
+
+.amount-input-wrapper .currency-symbol {
+    position: absolute;
+    left: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--on-surface-variant);
+    pointer-events: none;
+}
+
+.amount-input-wrapper input {
+    padding-left: var(--spacing-xl);
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+/* ===== FORM BUTTONS AREA ===== */
+.form-actions {
+    padding-top: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+/* ===== SUBMIT BUTTON ===== */
+.btn-submit {
+    width: 100%;
+    height: 44px;
+    background-color: var(--primary);
+    color: var(--on-primary);
+    border: none;
+    border-radius: var(--radius-lg);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.1s ease, background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    opacity: 0.9;
+}
+
+.btn-submit:active {
+    transform: scale(0.98);
+}
+
+.btn-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-submit.saving {
+    opacity: 0.5;
+}
+
+.btn-submit.success {
+    background-color: var(--on-tertiary-container);
+}
+
+/* ===== CLEAR / RESET BUTTON ===== */
+.btn-clear {
+    width: 100%;
+    height: 44px;
+    background-color: transparent;
+    color: var(--secondary);
+    border: none;
+    border-radius: var(--radius-lg);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-clear:hover {
+    background-color: var(--surface-container-high);
+}
+
+/* ===== RIGHT COLUMN ===== */
+.contacts-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* ===== CONTACTS LIST HEADER ===== */
+.contacts-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contacts-header h2 {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.contacts-count-badge {
+    background-color: var(--secondary-container);
+    color: var(--on-secondary-container);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 9999px;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+}
+
+/* ===== CONTACTS LIST CARD ===== */
+.contacts-list-card {
+    background-color: var(--surface-container-lowest);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--outline-variant);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+/* ===== CONTACTS LIST (UL) ===== */
+.contacts-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== CONTACT ITEM (LI) ===== */
+.contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--outline-variant);
+    transition: background-color 0.15s ease;
+    cursor: default;
+}
+
+.contact-item:last-child {
+    border-bottom: none;
+}
+
+.contact-item:hover {
+    background-color: var(--surface-container-low);
+}
+
+/* Contact Item Left Side */
+.contact-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    flex: 1;
+    min-width: 0;
+}
+
+.contact-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(17, 92, 185, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary);
+    flex-shrink: 0;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.contact-details {
+    min-width: 0;
+}
+
+.contact-name {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+    color: var(--on-surface);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contact-identity-inline {
+    font-weight: 400;
+    color: var(--on-surface-variant);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.contact-meta {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    color: var(--on-surface-variant);
+    margin-top: 2px;
+}
+
+/* Contact Item Right Side */
+.contact-amount-section {
+    text-align: right;
+    flex-shrink: 0;
+    margin-left: var(--spacing-md);
+}
+
+.contact-amount-label {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    color: var(--on-surface-variant);
+    margin-bottom: var(--spacing-xs);
+}
+
+.contact-amount-value {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.01em;
+    color: var(--error);
+}
+
+.contact-amount-value.settled {
+    color: var(--on-surface-variant);
+    opacity: 0.4;
+    text-decoration: line-through;
+}
+
+/* ===== LOADING STATE ===== */
+.contacts-loading {
+    padding: var(--spacing-xl);
+    text-align: center;
+    color: var(--on-surface-variant);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/* ===== EMPTY STATE ===== */
+.contacts-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xl) var(--spacing-lg);
+    text-align: center;
+}
+
+.contacts-empty-icon {
+    font-size: 48px;
+    color: var(--outline-variant);
+    margin-bottom: var(--spacing-md);
+}
+
+.contacts-empty p {
+    color: var(--on-surface-variant);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/* ===== LIST FOOTER ===== */
+.contacts-list-footer {
+    padding: var(--spacing-md);
+    background-color: var(--surface-container);
+    border-top: 1px solid var(--outline-variant);
+    display: flex;
+    justify-content: center;
+}
+
+.contacts-list-footer button {
+    background: none;
+    border: none;
+    color: var(--secondary);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* ===== CARD ENTRANCE ANIMATION ===== */
+@keyframes contactSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-item {
+    animation: contactSlideIn 0.3s ease-out both;
+}
+
+.contact-item:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.contact-item:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.contact-item:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.contact-item:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.contact-item:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.contact-item:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+.contact-item:nth-child(7) {
+    animation-delay: 0.35s;
+}
+
+.contact-item:nth-child(8) {
+    animation-delay: 0.4s;
+}
+
+/* ===== CARD BOUNCE FEEDBACK (after submit) ===== */
+@keyframes listBounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    30% {
+        transform: translateY(-4px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.contacts-list-card.bounce {
+    animation: listBounce 0.3s ease-in-out;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1023px) {
+    .new-contact-main {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-item {
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+    }
+
+    .contact-amount-section {
+        margin-left: 0;
+        width: 100%;
+        text-align: left;
+        padding-left: 56px;
+        /* avatar width + gap */
+    }
+
+    .contact-amount-value {
+        font-size: 18px;
+    }
+}
+
+/* ===== NUMBER INPUT SPINNER REMOVAL ===== */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
