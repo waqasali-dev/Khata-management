@@ -39,6 +39,11 @@ async function initDb() {
     `);
 
     await pool.query(`
+      ALTER TABLE users ADD COLUMN IF NOT EXISTS created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP;
+      ALTER TABLE udhar ADD COLUMN IF NOT EXISTS created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP;
+    `);
+
+    await pool.query(`
       CREATE INDEX IF NOT EXISTS idx_udhar_user ON udhar (user_id);
       CREATE INDEX IF NOT EXISTS idx_udhar_contact ON udhar (user_id, name, identity);
     `);
