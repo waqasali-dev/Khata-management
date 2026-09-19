@@ -2,7 +2,7 @@ create table users (
     user_id uuid primary key default gen_random_uuid(),
     name varchar(255) not null,
     email varchar(255) UNIQUE not null,
-    password varchar(255) not null,
+    password varchar(255) not null
 );
 
 CREATE TABLE udhar (

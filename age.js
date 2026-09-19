@@ -6,7 +6,7 @@ const ages = [
     { name: "Yash", age: 22 },
 ]
 
-let reduced = ages.reduce((group,  ) => {
+let reduced = ages.reduce((group, people) => {
     const val = people.age;
     if (!group[val]) group[val] = [];
     group[val].push(people.name);
