@@ -9,77 +9,19 @@ function NewContact() {
     const [submitState, setSubmitState] = useState("idle"); // idle | saving | success
 
     useEffect(() => {
-        const fetchContact = async () => {
-            try {
-                const response = await fetch("http://localhost:5000/api/contacts");
-                const data = await response.json();
-                setContacts(data);
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        fetchContact();
+
     }, []);
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        setSubmitState("saving");
 
-        const newContact = {
-            name: name,
-            identity: identity,
-            udhars: [
-                {
-                    amount: Number(udhar),
-                    type: "udhar",
-                    date: new Date().toISOString().split("T")[0],
-                },
-            ],
-            amount: Number(udhar),
-        };
-
-        try {
-            const response = await fetch("http://localhost:5000/api/contacts", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(newContact),
-            });
-
-            if (response.ok) {
-                const addedContact = await response.json();
-                setContacts([...contacts, addedContact]);
-                setSubmitState("success");
-
-                setTimeout(() => {
-                    setSubmitState("idle");
-                    setName("");
-                    setIdentity("");
-                    setUdhar("");
-
-                    // Bounce animation on list
-                    const listCard = document.querySelector(".contacts-list-card");
-                    if (listCard) {
-                        listCard.classList.add("bounce");
-                        setTimeout(() => listCard.classList.remove("bounce"), 400);
-                    }
-                }, 1500);
-            }
-        } catch (error) {
-            console.error("Error connecting to server:", error);
-            setSubmitState("idle");
-        }
     };
 
     const handleClear = () => {
-        setName("");
-        setIdentity("");
-        setUdhar("");
+
     };
 
     const getSubmitButtonText = () => {
-        if (submitState === "saving") return "Saving...";
-        if (submitState === "success") return "Success!";
-        return "Submit Entry";
+
     };
 
     return (

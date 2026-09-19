@@ -512,3 +512,101 @@ a {
   background-color: rgba(17, 92, 185, 0.2);
   color: var(--primary);
 }
+
+.add-udhar-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.add-udhar-card {
+  background-color: var(--surface);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-lg);
+  width: 90%;
+  max-width: 400px;
+  box-shadow: var(--shadow-lg);
+  animation: slideUp 0.3s ease-out;
+}
+
+.add-udhar-card h2 {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.add-udhar-card form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.add-udhar-card form .form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.add-udhar-card form .form-field label {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.add-udhar-card form .form-field input {
+  padding: var(--spacing-md);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--outline-variant);
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: var(--on-surface);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-udhar-card form .form-field input:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 2px rgba(17, 92, 185, 0.15);
+}
+
+.add-udhar-card form .form-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.add-udhar-card form .form-actions button {
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.1s ease;
+}
+
+.add-udhar-card form .form-actions button:hover {
+  filter: brightness(1.1);
+}
+
+.add-udhar-card form .form-actions button:active {
+  transform: scale(0.98);
+}
+
+.add-udhar-card form .form-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

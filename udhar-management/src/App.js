@@ -1,37 +1,40 @@
-import { React, useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './App.css';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { loggedInContext } from './context/logedInStatus';
 
 function App() {
+  const { loggedIn } = useContext(loggedInContext) || { loggedIn: false };
   const [name, setName] = useState("");
   const [identity, setIdentity] = useState("");
   const [contacts, setContacts] = useState([]);
   const [requested, setRequested] = useState([]);
+  const [addUdhar, setAddUdhar] = useState(false);
+  const [amount, setAmount] = useState("");
+  const [type, setType] = useState("");
+  const [date, setDate] = useState("");
+
 
   useEffect(() => {
-    const fetchCOntact = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/api/contacts");
-        const data = await response.json();
-        console.log("this is contacts", data);
-        setContacts(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchCOntact();
+
   }, []);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const result = contacts.filter((contacts) => contacts.name === name && contacts.identity === identity);
-    if (result.length === 0) {
-      alert("No contact found");
-    } else {
-      console.log(result);
-      setRequested(result);
-    }
+
   };
+
+  const handleAddUdhar = (requested) => {
+
+
+  }
+
+  function updateContact(requested) {
+
+  }
+
+  if (!loggedIn) {
+    return <Navigate to='/login' />
+  }
 
   return (
     <div className="App">
@@ -70,6 +73,7 @@ function App() {
             <div key={index}>
               <p>Name: {request.name}</p>
               <p>Identity: {request.identity}</p>
+              <button onClick={() => setAddUdhar(true)}>Add Udhar</button>
               <p>Udhar History: {request.udhars.map((udhar, index) => (
                 <div key={index} className="udhar-entry">
                   <p>Amount: {udhar.amount}</p>
@@ -80,8 +84,54 @@ function App() {
             </div>
           ))}
         </div>
-      </section>
-    </div>
+      </section >
+      {addUdhar && (
+        <div className="add-udhar-overlay">
+          <div className="add-udhar-card">
+            <h2>Add Udhar</h2>
+            <form onSubmit={(e) => e.preventDefault()}>
+              <div className="form-field">
+                <label htmlFor="amount">Amount</label>
+                <input
+                  type="number"
+                  id="amount"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-field">
+                <label htmlFor="type">Type</label>
+                <select
+                  id="type"
+                  value={type}
+                  onChange={(e) => setType(e.target.value)}
+                  required
+                >
+                  <option value="udhar">Udhar</option>
+                  <option value="payment">Payment</option>
+                </select>
+              </div>
+              <div className="form-field">
+                <label htmlFor="date">Date</label>
+                <input
+                  type="date"
+                  id="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-actions">
+                <button type="submit" onClick={() => handleAddUdhar(requested)} >Add Udhar</button>
+                <button onClick={() => setAddUdhar(false)}>Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )
+      }
+    </div >
   );
 }
 
