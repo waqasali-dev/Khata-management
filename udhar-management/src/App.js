@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, useCallback } from 'react';
 import './App.css';
 import { Link, Navigate, useLocation } from 'react-router-dom';
 import { loggedInContext } from './context/logedInStatus';
+import { exportContactLedgerToCSV } from './utils/exportCsv';
 
 function App() {
   const { loggedIn, user, logOut } = useContext(loggedInContext) || { loggedIn: false };
@@ -544,6 +545,23 @@ function App() {
                         }}
                       >
                         + Add Entry
+                      </button>
+
+                      <button
+                        onClick={() => exportContactLedgerToCSV(contact)}
+                        title="Export ledger history as CSV"
+                        style={{
+                          backgroundColor: 'transparent',
+                          color: 'var(--secondary)',
+                          border: '1px solid var(--secondary)',
+                          padding: '0.55rem 0.8rem',
+                          borderRadius: '8px',
+                          fontWeight: 600,
+                          fontSize: '0.8rem',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        Export CSV
                       </button>
 
                       <button
