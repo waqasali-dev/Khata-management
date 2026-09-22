@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const { pool, initDb } = require('./db');
+const { validateEmail, sanitizeString, validateAmount, validateTransactionType } = require('./utils/validation');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -14,9 +15,15 @@ app.use(express.json());
 app.get('/api/health', async (req, res) => {
   try {
     const dbRes = await pool.query('SELECT NOW()');
-    res.json({ status: 'ok', timestamp: dbRes.rows[0].now });
+    res.json({
+      status: 'healthy',
+      database: 'connected',
+      timestamp: dbRes.rows[0].now,
+      uptime: process.uptime(),
+      version: '1.1.0'
+    });
   } catch (err) {
-    res.status(500).json({ status: 'error', error: err.message });
+    res.status(500).json({ status: 'unhealthy', database: 'disconnected', error: err.message });
   }
 });
 
